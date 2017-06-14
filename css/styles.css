@@ -6,3 +6,24 @@
   font-size: 48px;
   background-color: lightblue;
 }
+
+.score button {
+  font-size: 32px;
+}
+
+
+
+.die {
+  background-image: url('../img/one.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.row.display-flex > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}

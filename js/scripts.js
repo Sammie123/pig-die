@@ -36,7 +36,6 @@ $(document).ready(function() {
 
   var hold = $("form.holdForm").submit(function(event) {
     event.preventDefault();
-alert("hold: potentialPoints: " + potentialPoints);
 
     if (player1.hasDie) {
       alert ("player1 has die");
@@ -71,6 +70,28 @@ alert("hold: potentialPoints: " + potentialPoints);
     //player.updateScore(points); // update score
 
     var points = die.rollDie();
+
+    switch (points) {
+        case 1:
+            $(".die").css({"background-image": "url('img/one.gif')"});
+            break;
+        case 2:
+            $(".die").css({"background-image": "url('img/two.gif')"});
+            break;
+        case 3:
+            $(".die").css({"background-image": "url('img/three.gif')"});
+            break;
+        case 4:
+            $(".die").css({"background-image": "url('img/four.gif')"});
+            break;
+        case 5:
+            $(".die").css({"background-image": "url('img/five.gif')"});
+            break;
+        case 6:
+            $(".die").css({"background-image": "url('img/six.gif')"});
+    }
+
+
 
 
 

@@ -1,0 +1,8 @@
+h1 {
+  text-align: center;
+}
+
+label {
+  background-color: lightblue;
+  text-align: left !important;
+}

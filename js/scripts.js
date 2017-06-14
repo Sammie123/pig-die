@@ -13,22 +13,56 @@ var Player = function(name) {
   this.hasDie = false;
 }
 
-Player.prototype.updateScore = function (points) {
-  return this.score += points;
+Player.prototype.updateScore = function (n) {
+  return this.score += n;
 }
 
 var die = new Die();
 var player1 = new Player("Lincoln");
 var player2 = new Player("Michael");
+var potentialPoints = 0;
 
 player1.hasDie = true;
 
 //interface
 $(document).ready(function() {
 
+
   $(".playerName1").text(player1.name);
   $(".playerName2").text(player2.name);
   $("#player1roll").show();
+
+
+
+  var hold = $("form.holdForm").submit(function(event) {
+    event.preventDefault();
+alert("hold: potentialPoints: " + potentialPoints);
+
+    if (player1.hasDie) {
+      alert ("player1 has die");
+      player1.hasDie = false;
+      player2.hasDie = true;
+      $("#player2roll").show();
+      $("#player1roll").hide();
+      player1.updateScore(potentialPoints);
+      potentialPoints = 0;
+      $(".playerScore1").text(player1.score);
+
+    } else {
+      player2.hasDie = false;
+      player1.hasDie = true;
+      $("#player1roll").show();
+      $("#player2roll").hide();
+      alert ("potentialPoints: " + potentialPoints);
+      player2.updateScore(potentialPoints);
+      potentialPoints = 0;
+      $(".playerScore2").text(player2.score);
+    }
+
+
+
+
+  });
 
   $("form.rollForm").submit(function(event) {
     event.preventDefault();
@@ -38,15 +72,17 @@ $(document).ready(function() {
 
     var points = die.rollDie();
 
+
+
     if (player1.hasDie) {
+
       if (points === 1) {
         player1.hasDie = false;
         player2.hasDie = true;
         $("#player2roll").show();
         $("#player1roll").hide();
+        potentialPoints = 0;
 
-      } else {
-        player1.updateScore(points);
       }
     } else {
       if (points === 1) {
@@ -54,9 +90,20 @@ $(document).ready(function() {
         player1.hasDie = true;
         $("#player1roll").show();
         $("#player2roll").hide();
-      } else {
-        player2.updateScore(points);
+        potentialPoints = 0;
       }
+    }
+
+    potentialPoints += points;
+
+    if ((player1.hasDie && player1.score + potentialPoints >= 20) || (player2.hasDie && player2.score + potentialPoints >= 20)) {
+      player1.hasDie ? player1.score += potentialPoints : player2.score += potentialPoints;
+
+      $(".rollForm").hide();
+      $(".holdForm").hide();
+      var winner = (player1.score >= 20) ? player1.name : player2.name;
+      $(".winner").text(winner);
+      $(".gameOver").show();
     }
 
     $(".roll").text(points);
@@ -65,11 +112,7 @@ $(document).ready(function() {
     $(".playerScore1").text(player1.score);
     $(".playerScore2").text(player2.score);
 
-    if (player1.score >= 100 || player2.score >= 100) {
-      var winner = (player1.score >= 100) ? player1.name : player2.name;
-      $(".winner").text(winner);
-      $(".gameOver").show();
-    }
+
 
 
 

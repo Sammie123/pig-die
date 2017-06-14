@@ -12,18 +12,38 @@
       <div class="jumbotron">
         <h1>Pig Dice</h1>
       </div>
+
       <div class="row">
+
         <div class="col-md-6">
-          <p class="lead">Dice Roll: <span class="roll"></span></p>
-          <form><button type="submit">Roll die</button></form>
+          <div class="panel panel-default">
+            <div class="panel-body text-center score">
+              <span class="playerName1"></span> score: <span class="playerScore1"></span>
+              <div id="player1roll">
+
+                <form class="rollForm"><button type="submit">Roll die</button></form>
+
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="col-md-6">
-          <p class="lead"><span class="playerName1"></span> score: <span class="playerScore1"></span></p>
-
-          <p class="lead"><span class="playerName2"></span> score: <span class="playerScore2"></span></p>
+          <div class="panel panel-default">
+            <div class="panel-body text-center score">
+              <span class="playerName2"></span> score: <span class="playerScore2"></span>
+              <div id="player2roll">
+                <form class="rollForm"><button type="submit">Roll die</button></form>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
+
+      <p class="lead">Dice Roll: <span class="roll"></span></p>
+      <form class="rollForm"><button type="submit">Roll die</button></form>
+
       <div class="gameOver">
         <p>Game Over. <span class="winner"></span> Wins!</p>
       </div>

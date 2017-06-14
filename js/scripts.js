@@ -28,8 +28,9 @@ $(document).ready(function() {
 
   $(".playerName1").text(player1.name);
   $(".playerName2").text(player2.name);
+  $("#player1roll").show();
 
-  $("form").submit(function(event) {
+  $("form.rollForm").submit(function(event) {
     event.preventDefault();
 
     //var points = die.rollDie(); // roll die
@@ -41,6 +42,9 @@ $(document).ready(function() {
       if (points === 1) {
         player1.hasDie = false;
         player2.hasDie = true;
+        $("#player2roll").show();
+        $("#player1roll").hide();
+
       } else {
         player1.updateScore(points);
       }
@@ -48,6 +52,8 @@ $(document).ready(function() {
       if (points === 1) {
         player2.hasDie = false;
         player1.hasDie = true;
+        $("#player1roll").show();
+        $("#player2roll").hide();
       } else {
         player2.updateScore(points);
       }

@@ -1,3 +1,8 @@
-.gameOver {
+.gameOver, #player1roll, #player2roll {
   display: none;
+}
+
+.score {
+  font-size: 48px;
+  background-color: lightblue;
 }
